@@ -10,12 +10,12 @@ export default class DeckList extends React.Component {
         return (
             <View style={styles.container}>
                 {
-                    Object.keys(decks).map((deck) => {
+                    Object.keys(decks).map((deck, key) => {
                         const { title } = decks[deck]
                         return (
-                            <View style={styles.deck}>
+                            <View key={key} style={styles.deck}>
                                 <Text>{title}</Text>
-                                <Button onPress=""
+                                <Button onPress={() => this.props.navigation.navigate('DeckView')}
                                     title="See deck"
                                 ></Button>
                             </View>
