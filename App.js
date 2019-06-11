@@ -1,10 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import DeckList from './components/DeckList'
+import DeckView from './components/DeckView'
 import AddDeck from './components/AddDeck'
 import { createBottomTabNavigator, createAppContainer, createStackNavigator } from 'react-navigation'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import { purple, white } from './utilis/colors'
+import { purple, white } from './utils/colors'
 
 const Tabs = createAppContainer(createBottomTabNavigator(
   {
@@ -33,17 +34,46 @@ const Tabs = createAppContainer(createBottomTabNavigator(
   }
 ));
 
-const MainNavigator = createStackNavigator({
-  Home: { screen: Tabs },
-  AddDeck: { screen: AddDeck },
-  DeckList: { screen: DeckList }
-})
+const MainNavigator = createAppContainer(createStackNavigator({
+  Home: {
+    screen: Tabs,
+    navigationOptions: {
+      header: null
+    }
+  },
+  AddDeck: {
+    screen: AddDeck,
+    navigationOptions: {
+      title: 'AddDeck'
+    }
+  },
+  DeckList: {
+    screen: DeckList,
+    navigationOptions: {
+      title: 'DeckList'
+    }
+  },
+  DeckView: {
+    screen: DeckView,
+    navigationOptions: {
+      title: 'DeckView'
+    }
+  },
+
+}, {
+    defaultNavigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: purple
+      }
+    }
+  }))
 
 export default class App extends React.Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <Tabs />
+        <MainNavigator />
       </View >
     );
   }

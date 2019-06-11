@@ -1,14 +1,17 @@
 import React from 'react'
 import { StyleSheet, View, Text } from 'react-native'
+import { getData } from '../utils/api'
 
 export default class DeckView extends React.Component {
     render() {
 
         const decks = getData();
+        const deck = this.props.navigation.state.params.entryId;
 
         return (
             <View style={styles.container}>
-                <Text>This is a DeckView component</Text>
+                <Text>{decks[deck].title}</Text>
+                <Text>{decks[deck].questions.length}</Text>
             </View>)
     }
 }

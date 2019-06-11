@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, View, Text, Button } from 'react-native'
-import { getData } from '../utilis/api'
+import { getData } from '../utils/api'
 
 export default class DeckList extends React.Component {
     render() {
@@ -15,7 +15,7 @@ export default class DeckList extends React.Component {
                         return (
                             <View key={key} style={styles.deck}>
                                 <Text>{title}</Text>
-                                <Button onPress={() => this.props.navigation.navigate('DeckView')}
+                                <Button onPress={() => this.props.navigation.navigate('DeckView', { entryId: deck })}
                                     title="See deck"
                                 ></Button>
                             </View>
