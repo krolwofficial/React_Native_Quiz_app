@@ -6,6 +6,9 @@ import AddDeck from './components/AddDeck'
 import { createBottomTabNavigator, createAppContainer, createStackNavigator } from 'react-navigation'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { purple, white } from './utils/colors'
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import reducer from './reducers'
 
 const Tabs = createAppContainer(createBottomTabNavigator(
   {
@@ -72,9 +75,11 @@ const MainNavigator = createAppContainer(createStackNavigator({
 export default class App extends React.Component {
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        <MainNavigator />
-      </View >
+      <Provider store={createStore(reducer)}>
+        <View style={{ flex: 1 }}>
+          <MainNavigator />
+        </View >
+      </Provider>
     );
   }
 }
