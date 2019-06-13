@@ -17,7 +17,7 @@ class DeckList extends React.Component {
 
     render() {
 
-        const decks = getData();
+        const { decks } = this.props
 
         return (
             <View style={styles.container}>
@@ -52,12 +52,12 @@ const styles = StyleSheet.create({
 
 function mapDispatchToProps(dispatch) {
     return {
-        receiveAllDecks: (deck) => dispatch(receiveDecks(deck))
+        receiveAllDecks: (decks) => dispatch(receiveDecks(decks))
     }
 }
 
 function mapStateToProps(decks) {
-    return decks
+    return { decks }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DeckList)
